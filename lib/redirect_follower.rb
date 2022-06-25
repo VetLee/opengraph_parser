@@ -18,6 +18,8 @@ class RedirectFollower
     uri = Addressable::URI.parse(url)
 
     http = Net::HTTP.new(uri.host, uri.inferred_port)
+    http.read_timeout = 5
+    
     if uri.scheme == 'https'
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_PEER
